@@ -116,6 +116,7 @@
                 <span>© {{ date('Y') }}</span>
                 <span>—</span>
                 <span>{{ config('app.name', 'Laravel') }}</span>
+                hellow world
             </div>
         </div>
     </div>
