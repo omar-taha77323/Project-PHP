@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+
+            $table->decimal('subtotal', 10, 2)->default(0);
+            $table->decimal('discount', 10, 2)->default(0);
+            $table->decimal('total', 10, 2)->default(0);
+
+            $table->string('status')->default('pending'); // pending/confirmed/cancelled/completed
+
             $table->timestamps();
         });
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Models\Categorie;
 use App\Http\Requests\StoreCategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
@@ -13,7 +15,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        return view('dsadmin.categories.index');
+        $categories = Categorie::latest()->paginate(10);
+        return view('dsadmin.categories.index', compact('categories'));
     }
 
     /**
@@ -27,9 +30,15 @@ class CategorieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategorieRequest $request)
+    public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+        ]);
+
+        Categorie::create($data);
+
+        return redirect()->route('categories.index')->with('status', 'تم إضافة القسم ✅');
     }
 
     /**
@@ -45,15 +54,21 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        //
+        return view('dsadmin.categories.edit', compact('categorie'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategorieRequest $request, Categorie $categorie)
+    public function update(Request $request, Categorie $categorie)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $categorie->id,
+        ]);
+
+        $categorie->update($data);
+
+        return redirect()->route('categories.index')->with('status', 'تم تحديث القسم ✅');
     }
 
     /**
@@ -61,6 +76,8 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie->delete();
+
+        return redirect()->route('categories.index')->with('status', 'تم حذف القسم 🗑️');
     }
 }

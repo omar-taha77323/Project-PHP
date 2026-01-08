@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
-@section('page_title', 'إضافة قسم')
+@section('page_title', 'تعديل قسم')
 
 @section('content')
 <div class="container py-4">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-            <h3 class="mb-0 fw-bold">إضافة قسم</h3>
-            <small class="text-muted">أضف قسم جديد</small>
+            <h3 class="mb-0 fw-bold">تعديل قسم</h3>
+            <small class="text-muted">عدّل بيانات القسم</small>
         </div>
         <a href="{{ route('categories.index') }}" class="btn btn-outline-secondary">رجوع</a>
     </div>
@@ -26,17 +26,19 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('categories.store') }}">
+            <form method="POST" action="{{ route('categories.update', $categorie) }}">
                 @csrf
+                @method('PUT')
 
                 <div class="mb-3">
                     <label class="form-label">اسم القسم</label>
-                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                    <input type="text" name="name" class="form-control"
+                           value="{{ old('name', $categorie->name) }}" required>
                 </div>
 
                 <div class="mt-4 d-flex gap-2">
-                    <button class="btn btn-primary">حفظ</button>
-                    <button type="reset" class="btn btn-outline-secondary">تفريغ</button>
+                    <button class="btn btn-primary">تحديث</button>
+                    <a href="{{ route('categories.index') }}" class="btn btn-outline-secondary">إلغاء</a>
                 </div>
             </form>
 

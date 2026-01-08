@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role_id');
+            $table->unsignedBigInteger('role_id')->default(3); // 1: Super Admin, 2: Sub Admin, 3: Customer
             $table->rememberToken();
             $table->timestamps();
         });

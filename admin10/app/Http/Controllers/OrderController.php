@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('dsadmin.orders.index');
+        $orders = Order::with('user')->latest()->paginate(10);
+        return view('dsadmin.orders.index', compact('orders'));
     }
 
     /**
@@ -37,7 +39,20 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('dsadmin.orders.show');
+        $order->load('user');
+        return view('dsadmin.orders.show', compact('order'));
+    }
+
+    // تغيير حالة الطلب
+    public function updateStatus(Request $request, Order $order)
+    {
+        $data = $request->validate([
+            'status' => 'required|in:pending,confirmed,cancelled,completed',
+        ]);
+
+        $order->update(['status' => $data['status']]);
+
+        return back()->with('status', 'تم تحديث حالة الطلب ✅');
     }
 
     /**

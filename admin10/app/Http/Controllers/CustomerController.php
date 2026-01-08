@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
@@ -13,7 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('dsadmin.customers.index');
+        $customers = User::where('role_id', 2)->latest()->paginate(10);
+
+        return view('dsadmin.customers.index', compact('customers'));
     }
 
     /**

@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dsadmin.home');
+        //  $user = $request->user();
+        // if (!$user || $user->role_id != 1) {
+        //     abort(403, 'ليس لديك صلاحية الدخول');
+        // }
+
+        // return $next($request);
+        return view('dsadmin.dashboard');
     }
 }
