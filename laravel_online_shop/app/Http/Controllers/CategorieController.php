@@ -44,7 +44,7 @@ class CategorieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categorie $categorie)
+    public function show(Categorie $category)
     {
         //
     }
@@ -52,21 +52,21 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Categorie $category)
     {
-        return view('dsadmin.categories.edit', compact('categorie'));
+        return view('dsadmin.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, Categorie $category)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,' . $categorie->id,
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
         ]);
 
-        $categorie->update($data);
+        $category->update($data);
 
         return redirect()->route('categories.index')->with('status', 'تم تحديث القسم ✅');
     }
@@ -74,9 +74,9 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie)
+    public function destroy(Categorie $category)
     {
-        $categorie->delete();
+        $category->delete();
 
         return redirect()->route('categories.index')->with('status', 'تم حذف القسم 🗑️');
     }

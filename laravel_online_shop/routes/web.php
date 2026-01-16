@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\PagesController;
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
@@ -21,7 +23,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
+/*
+|--------------------------------------------------------------------------
+| Pages The WebSite for the Elctronic Stoer 
+|--------------------------------------------------------------------------
+*/
+Route::resource('pages', PagesController::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +59,8 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
 
     // Categories
     Route::resource('categories', CategorieController::class);
-
+    // Route::put('categories/{category}', [CategorieController::class, 'update'])
+    //     ->name('categories.update');
     // Products
     Route::resource('products', ProductController::class);
     Route::delete('/products/images/{image}', [ProductController::class, 'deleteImage'])

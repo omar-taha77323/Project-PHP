@@ -79,7 +79,7 @@ class AdminUsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.super-admins.index')->with('success', 'تم تحديث الأدمن بنجاح');
+        return redirect()->route('super-admins.index')->with('success', 'تم تحديث الأدمن بنجاح');
     }
 
     public function destroySuper(User $user)

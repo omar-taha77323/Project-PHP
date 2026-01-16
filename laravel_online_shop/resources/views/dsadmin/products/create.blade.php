@@ -51,6 +51,12 @@
                     <label class="form-label">الوصف</label>
                     <textarea name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
                 </div>
+                   {{-- <div class="col-md-12">
+                    <div class="mb-3">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Description"></textarea>
+                    </div>
+                </div>   --}}
 
                 <div class="mb-3">
                     <label class="form-label">SKU (اختياري)</label>

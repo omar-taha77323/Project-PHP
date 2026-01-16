@@ -117,7 +117,7 @@
 			<!-- /.content-wrapper -->
 			<footer class="main-footer">
 				
-				<strong> &copy; 2026 by Team Coder &copy;  All rights reserved.
+				<strong> &copy; 2026 by Team Coder
 			</footer>
 			
 		</div>

@@ -83,13 +83,13 @@
 
 
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{url('/super-admins')}}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{url('/pages')}}" class="nav-link">
 									<i class="nav-icon  far fa-file-alt"></i>
 									<p>Pages</p>
 								</a>
