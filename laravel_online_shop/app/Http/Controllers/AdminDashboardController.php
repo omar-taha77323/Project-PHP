@@ -24,6 +24,9 @@ class AdminDashboardController extends Controller
 
         $latestOrders = Order::with('user')->latest()->take(5)->get();
 
+        // Total Sales (only completed orders)
+        $totalSales = Order::where('status', 'completed')->sum('total');
+
         $ordersByStatus = Order::selectRaw('status, COUNT(*) as total')
             ->groupBy('status')
             ->pluck('total', 'status');
@@ -33,7 +36,8 @@ class AdminDashboardController extends Controller
             'ordersCount',
             'customersCount',
             'latestOrders',
-            'ordersByStatus'
+            'ordersByStatus',
+            'totalSales'
         ));
     }
 }

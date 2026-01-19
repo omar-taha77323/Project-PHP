@@ -26,14 +26,14 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('categories.update', $categorie) }}">
-                @csrf
-                @method('PUT')
+            <form action="{{ route('categories.update', $category->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
                 <div class="mb-3">
                     <label class="form-label">اسم القسم</label>
                     <input type="text" name="name" class="form-control"
-                           value="{{ old('name', $categorie->name) }}" required>
+                           value="{{ old('name', $category->name) }}" required>
                 </div>
 
                 <div class="mt-4 d-flex gap-2">

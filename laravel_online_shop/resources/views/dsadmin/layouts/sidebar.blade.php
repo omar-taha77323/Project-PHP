@@ -33,12 +33,12 @@
 								</a>
 							</li>
 
-							<li class="nav-item">
+							{{-- <li class="nav-item">
 								<a href="#" class="nav-link">
 									<i class="nav-icon fas fa-file-alt"></i>
 									<p>Sub Category</p>
 								</a>
-							</li>
+							</li> --}}
 							<li class="nav-item">
 								<a href="#" class="nav-link">
 									<svg class="h-6 nav-icon w-6 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -55,13 +55,13 @@
 							</li>
 
 							
-							<li class="nav-item">
+							{{-- <li class="nav-item">
 								<a href="#" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
 									<i class="fas fa-truck nav-icon"></i>
 									<p>Shipping</p>
 								</a>
-							</li>							
+							</li>							 --}}
 					
 							<li class="nav-item">
 								<a href="{{ url('/orders') }}"
@@ -83,13 +83,13 @@
 
 
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{url('/super-admins')}}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{url('/pages')}}" class="nav-link">
 									<i class="nav-icon  far fa-file-alt"></i>
 									<p>Pages</p>
 								</a>

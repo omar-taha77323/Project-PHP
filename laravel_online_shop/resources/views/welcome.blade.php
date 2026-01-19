@@ -98,11 +98,12 @@
                         @if($role === 1)
                         <a class="tile transition" href="{{ url('/super-admins') }}">🛡️ Super Admins</a>
                         <a class="tile transition" href="{{ url('/sub-admins') }}">👮 Sub Admins</a>
-                        <a class="tile transition" href="{{ url('/customers') }}">👥 Users</a>
+                        <a class="tile transition" href="{{ url('/customers') }}">👥 Customers</a>
+                        {{-- <a class="tile transition" href="{{ url('/') }}">👥 Users</a> --}}
                         @endif
                         @else
                         <div class="tile">
-                            ✅ أنت User (role_id = 3). لا توجد لوحة إدارة هنا.
+                             أنت User (role_id = 3). لا توجد لوحة إدارة هنا.
                             إذا تريد صفحة مستخدم خاصة، نضيف routes و views لها.
                         </div>
                         @endif
