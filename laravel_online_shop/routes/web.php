@@ -12,6 +12,8 @@ use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +47,12 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+    // Settings
+    Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
+    Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
 });
+
+
 /*
 |--------------------------------------------------------------------------
 | Dashboard + Admin Panel (Super Admin + Sub Admin)
@@ -75,6 +82,50 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
     Route::resource('discount', DiscountController::class);
     // Customers
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+});
+
+/*
+|--------------------------------------------------------------------------
+|Brands Routes
+|--------------------------------------------------------------------------
+*/
+// صفحة عرض كل الماركات (للمستخدم)
+Route::get('/brands', [BrandController::class, 'index'])
+    ->name('brands.index');
+
+// صفحة عرض ماركة واحدة باستخدام slug
+Route::get('/brands/{brand:slug}', [BrandController::class, 'show'])
+    ->name('brands.show');
+
+Route::prefix('dsadmin')->name('dsadmin.')->group(function () {
+
+    // عرض كل الماركات (admin)
+    Route::get('/brands', [BrandController::class, 'index'])
+        ->name('brands.index');
+
+    // create
+    Route::get('/brands/create', [BrandController::class, 'create'])
+        ->name('brands.create');
+
+    // store
+    Route::post('/brands', [BrandController::class, 'store'])
+        ->name('brands.store');
+
+    // edit
+    Route::get('/brands/{brand}/edit', [BrandController::class, 'edit'])
+        ->name('brands.edit');
+
+    // update
+    Route::put('/brands/{brand}', [BrandController::class, 'update'])
+        ->name('brands.update');
+
+    // delete
+    Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])
+        ->name('brands.destroy');
+
+    // toggle visibility
+    Route::get('/brands/{brand}/toggle', [BrandController::class, 'toggleVisibility'])
+        ->name('brands.toggle');
 });
 
 /*

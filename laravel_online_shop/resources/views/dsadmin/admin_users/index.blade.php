@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <h3 class="mb-3">{{ $title }}</h3>
+    {{-- <h3 class="mb-3">{{ $title }}</h3> --}}
 
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
@@ -13,10 +13,16 @@
     <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <a class="btn btn-primary mb-3"
-        href="{{ $role == 1 ? url('/super-admins/create') : url('/sub-admins/create') }}">
-        + إضافة
-    </a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold mb-0">Admin Users</h3>
+            <small class="text-muted">Admin Users Management</small>
+        </div>
+
+        <a href="{{ $role == 1 ? url('/super-admins/create') : url('/sub-admins/create') }}" class="btn btn-primary">
+            + Add Admin User
+        </a>
+    </div>
 
     <table class="table table-bordered">
         <thead>

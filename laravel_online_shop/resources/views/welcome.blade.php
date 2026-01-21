@@ -18,7 +18,7 @@
         {{-- Topbar --}}
         <div class="topbar">
             <div class="inline-flex" style="gap:.75rem; align-items:center;">
-                <span class="badge"><span>🛒</span><span>ElectroStore</span></span>
+                <span class="badge"><img src="{{ asset('admin-assets/img/AdminLogo.png  with=100px, height=100px') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"><span>ElectroStore</span></span>
             </div>
 
             @if (Route::has('login'))
@@ -59,7 +59,7 @@
                 <div class="text-center" style="margin-top: .5rem;">
 
                     <h1 class="text-5xl font-bold text-gray-900" style="margin-top: 1rem;">
-                        مرحبًا بك في <span style="text-decoration: underline;">{{ config('Team Coder', 'ElectroStore') }}</span>
+                     <span style="text-decoration: underline;">{{ config('Team Coder', 'ElectroStore') }}</span>
                     </h1>
 
                     {{-- <p class="text-base muted" style="margin-top: .75rem; line-height: 1.8;">

@@ -8,17 +8,48 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Brand;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $products = Product::with(['category', 'images'])->latest()->paginate(10);
-        return view('dsadmin.products.index', compact('products'));
+        $query = Product::with(['category', 'brand']); // منع N+1
+
+        // Search
+        if ($request->filled('search')) {
+            $query->where('name', 'like', "%{$request->search}%")
+                ->orWhere('sku', 'like', "%{$request->search}%");
+        }
+
+        // Filter category
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Filter brand
+        if ($request->filled('brand_id')) {
+            $query->where('brand_id', $request->brand_id);
+        }
+
+        // Filter status
+        if ($request->filled('is_active')) {
+            $query->where('is_active', $request->is_active);
+        }
+
+        $products = $query->paginate(10);
+
+        $categories = Categorie::all();
+        $brands = Brand::where('is_visible', true)->get();
+
+        return view('dsadmin.products.index', compact('products', 'categories', 'brands'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +57,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Categorie::orderBy('name')->get();
-        return view('dsadmin.products.create', compact('categories'));
+        $brands = Brand::orderBy('name')->get();
+        return view('dsadmin.products.create', compact('categories', 'brands'));
     }
 
     /**
@@ -36,6 +68,7 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'category_id' => 'nullable|exists:categories,id',
+            'brand_id' => 'nullable|exists:brands,id',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'sku' => 'nullable|string|max:255|unique:products,sku',
@@ -80,7 +113,8 @@ class ProductController extends Controller
     {
         $product->load('images'); // ✅ عشان تعرض الصور القديمة في صفحة التعديل
         $categories = Categorie::orderBy('name')->get();
-        return view('dsadmin.products.edit', compact('product', 'categories'));
+        $brands = Brand::orderBy('name')->get();
+        return view('dsadmin.products.edit', compact('product', 'categories', 'brands'));
     }
 
     /**
