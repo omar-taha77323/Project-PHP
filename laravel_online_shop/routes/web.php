@@ -3,17 +3,17 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AdminUsersController;
-use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\ChangePasswordController;
+use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
     Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
 });
-
 
 /*
 |--------------------------------------------------------------------------
