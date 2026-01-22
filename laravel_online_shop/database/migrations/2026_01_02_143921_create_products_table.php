@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -27,15 +25,20 @@ return new class extends Migration
             // $table->string('image')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+
+            $table->decimal('discount', 10, 2)->default(0);
+            // $table->decimal('total', 10, 2)->default(0);    
+            $table->decimal('sale_price', 10, 2)
+                ->nullable()
+                ->after('price');
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('sale_price');
+        });
     }
 };

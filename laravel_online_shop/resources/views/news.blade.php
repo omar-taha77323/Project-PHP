@@ -33,10 +33,6 @@
         <div class="flex items-center justify-center px-6 py-10">
             <div class="w-full max-w-xl card p-6">
                 <div class="text-center" style="margin-top: .5rem;">
-                    <div class="badge" style="margin: 0 auto;">
-                        <span>🚀</span>
-                        <span>Laravel Starter</span>
-                    </div>
 
                     <h1 class="text-5xl font-bold text-gray-900" style="margin-top: 1rem;">
                         مرحبًا بك في <span style="text-decoration: underline;">{{ config('app.name', 'Laravel') }}</span>

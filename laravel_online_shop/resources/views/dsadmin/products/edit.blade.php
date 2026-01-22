@@ -56,7 +56,7 @@
                             <span class="badge bg-secondary">صورة</span>
                             @endif
 
-                            {{-- ✅ فورم حذف الصورة (لوحده) --}}
+                           
                             <form action="{{ route('products.images.delete', $img->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -77,77 +77,86 @@
             @endif
 
 
-            {{-- ✅ فورم التحديث (لوحده) --}}
-            <form method="POST" action="{{ route('products.update', $product) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
 
+                {{-- القسم --}}
                 <div class="mb-3">
                     <label class="form-label">القسم</label>
                     <select name="category_id" class="form-select">
                         <option value="">بدون قسم</option>
                         @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}"
-                            {{ old('category_id', $product->category_id) == $cat->id ? 'selected' : '' }}>
+                        <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
                             {{ $cat->name }}
                         </option>
                         @endforeach
                     </select>
                 </div>
 
+                {{-- العلامة التجارية --}}
+                <div class="mb-3">
+                    <label class="form-label">العلامة التجارية</label>
+                    <select name="brand_id" class="form-select">
+                        <option value="">بدون علامة تجارية</option>
+                        @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}" {{ old('brand_id') == $brand->id ? 'selected' : '' }}>
+                            {{ $brand->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- اسم المنتج --}}
                 <div class="mb-3">
                     <label class="form-label">اسم المنتج</label>
-                    <input type="text" name="name" class="form-control"
-                        value="{{ old('name', $product->name) }}" required>
+                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                 </div>
 
+                {{-- الوصف --}}
                 <div class="mb-3">
                     <label class="form-label">الوصف</label>
-                    <textarea name="description" class="form-control" rows="3">{{ old('description', $product->description) }}</textarea>
+                    <textarea name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
                 </div>
 
+                {{-- SKU --}}
                 <div class="mb-3">
-                    <label class="form-label">SKU</label>
-                    <input type="text" name="sku" class="form-control"
-                        value="{{ old('sku', $product->sku) }}">
+                    <label class="form-label">SKU (اختياري)</label>
+                    <input type="text" name="sku" class="form-control" value="{{ old('sku') }}" placeholder="مثال: IP15PRO-256">
                 </div>
 
+                {{-- السعر والمخزون --}}
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label">السعر</label>
-                        <input type="number" step="0.01" name="price" class="form-control"
-                            value="{{ old('price', $product->price) }}" required>
+                        <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price') }}" required>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">المخزون</label>
-                        <input type="number" name="stock" class="form-control"
-                            value="{{ old('stock', $product->stock) }}" required>
+                        <input type="number" name="stock" class="form-control" value="{{ old('stock', 0) }}" required>
                     </div>
                 </div>
 
-                {{-- ✅ إضافة صور جديدة --}}
+                {{-- الصور --}}
                 <div class="mb-3 mt-3">
-                    <label class="form-label">إضافة صور جديدة</label>
+                    <label class="form-label">صور المنتج (يمكن اختيار أكثر من صورة)</label>
                     <input type="file" name="images[]" class="form-control" multiple accept="image/*">
-                    <small class="text-muted">سيتم إضافة الصور الجديدة دون حذف الصور القديمة</small>
+                    <small class="text-muted">الحد الأقصى 2MB لكل صورة (jpg/png/webp)</small>
                 </div>
 
-                {{-- ✅ حالة المنتج --}}
+                {{-- الحالة --}}
                 <input type="hidden" name="is_active" value="0">
                 <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" name="is_active" id="is_active" value="1"
-                        {{ old('is_active', $product->is_active) ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="is_active" value="1" id="is_active" checked>
                     <label class="form-check-label" for="is_active">نشط</label>
                 </div>
 
+                {{-- أزرار الحفظ --}}
                 <div class="mt-4 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">تحديث</button>
-                    <a href="{{ route('products.index') }}" class="btn btn-outline-secondary">إلغاء</a>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <button type="reset" class="btn btn-outline-secondary">تفريغ</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 
