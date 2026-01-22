@@ -1,17 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class DiscountController extends Controller
+use App\Models\Customer;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('dsadmin.discount.index');
+        $customers = User::where('role_id', 2)->latest()->paginate(10);
+
+        return view('dsadmin.customers.index', compact('customers'));
     }
 
     /**
@@ -25,7 +33,7 @@ class DiscountController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
         //
     }
@@ -33,7 +41,7 @@ class DiscountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Customer $customer)
     {
         //
     }
@@ -41,7 +49,7 @@ class DiscountController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -49,7 +57,7 @@ class DiscountController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         //
     }
@@ -57,7 +65,7 @@ class DiscountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Customer $customer)
     {
         //
     }

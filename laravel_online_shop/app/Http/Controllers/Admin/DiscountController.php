@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PagesController extends Controller
+class DiscountController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Pages.index');
+        return view('dsadmin.discount.index');
     }
 
     /**
