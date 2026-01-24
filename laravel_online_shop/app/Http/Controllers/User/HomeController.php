@@ -5,26 +5,34 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use App\Models\Product;
+use App\Models\Brand;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $categories = Categorie::query()
-            ->withCount(['products' => function ($q) {
-                $q->where('is_active', 1);
-            }])
+            ->withCount('products')
             ->orderBy('name')
             ->take(8)
             ->get();
 
         $featuredProducts = Product::query()
             ->where('is_active', 1)
-            ->with(['brand', 'category', 'mainImage'])
+            ->with(['mainImage', 'brand'])
             ->latest()
-            ->take(12) // نخليها أكثر عشان الـ slider
+            ->take(8)
             ->get();
 
-        return view('user.home', compact('categories', 'featuredProducts'));
+        $brands = Brand::query()->where('is_visible', 1)->get();
+
+        return view('user.pages.home', compact('categories', 'featuredProducts', 'brands'));
+    }
+
+    public function brands()
+    {
+        $brands = Brand::query()->where('is_active', 1)->get();
+
+        return view('user.pages.brands', compact('brands'));
     }
 }
