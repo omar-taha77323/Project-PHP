@@ -19,7 +19,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            
+
             <!-- Row 1: Top Statistics (4 Boxes) -->
             <div class="row">
                 <!-- Box 1: Orders -->
@@ -131,7 +131,7 @@
                                                 <td>{{ $o->user->name ?? '-' }}</td>
                                                 <td>${{ number_format($o->total, 2) }}</td>
                                                 <td>
-                                                    <span class="badge 
+                                                    <span class="badge
                                                         @if($o->status=='pending') bg-secondary
                                                         @elseif($o->status=='confirmed') bg-primary
                                                         @elseif($o->status=='completed') bg-success

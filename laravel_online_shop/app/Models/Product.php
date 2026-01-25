@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use \App\Models\Categorie;
+use App\Models\Brand;
 use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
