@@ -17,7 +17,7 @@
     <section class="px-6 mb-16">
         <div class="relative overflow-hidden rounded-xl">
             <div class="min-h-[420px] flex flex-col items-center justify-center p-8 text-center bg-cover bg-center"
-                 style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("{{ asset('images/about/hero.jpg') }}");'>
+                 style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("{{ asset('images/hero.jpg') }}");'>
                 <div class="max-w-[720px] space-y-6">
                     <h1 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
                         Who We Are
@@ -80,7 +80,7 @@
                     <div class="w-full h-full rounded-xl overflow-hidden shadow-2xl">
                         <img alt="Professional team in a bright office"
                              class="w-full h-full object-cover"
-                             src="{{ asset('images/about/team.jpg') }}">
+                             src="{{ asset('images/hero.jpg') }}">
                     </div>
                 </div>
                 <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-3xl -z-10"></div>

@@ -16,7 +16,6 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\SettingController;
 
 use App\Http\Controllers\User\HomeController as UserHomeController;
-use App\Http\Controllers\User\NewsletterController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\CategoryController as UserCategoryController;
@@ -73,8 +72,6 @@ Route::name('user.')->group(function () {
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
         Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
-        // Newsletter
-        Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
     });
 
     // Wishlist (Session)
@@ -165,10 +162,8 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
 
     // Customers
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
-});
 
-
-/*
+    /*
 |--------------------------------------------------------------------------
 | Brands Routes
 |--------------------------------------------------------------------------
@@ -188,6 +183,9 @@ Route::prefix('dsadmin')->name('dsadmin.')->group(function () {
     Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
     Route::get('/brands/{brand}/toggle', [BrandController::class, 'toggleVisibility'])->name('brands.toggle');
 });
+});
+
+
 
 
 /*

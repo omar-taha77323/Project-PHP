@@ -176,9 +176,9 @@
                                         alt="{{ $p->name }}" src="{{ asset($img) }}" />
                                 @else
                                     <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        alt="{{ $p->name }}"
-                                        src="https://picsum.photos/seed/product-{{ $p->id }}/800/800" />
+                                        alt="{{ $p->name }}" src="{{ asset('images/hero.jpg') }}" />
                                 @endif
+
 
                                 @if ($hasSale)
                                     <div

@@ -78,7 +78,7 @@
                         <div>
                             <p class="font-semibold text-[#111618] dark:text-white">Our Office</p>
                             <p class="text-[#617c89] dark:text-[#a0aec0] text-sm leading-relaxed">
-                                123 E-commerce Ave, Suite 400<br/>Tech City, CA 94043, USA
+                                Electro E-commerce Ave, Suite 400<br/>Sana'a City, CA 94043, YEM
                             </p>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
                         </div>
                         <div>
                             <p class="font-semibold text-[#111618] dark:text-white">Email Us</p>
-                            <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">support@laravel-ecommerce.com</p>
-                            <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">sales@laravel-ecommerce.com</p>
+                            <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">ُEbraheem@gmail.com</p>
+                            <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">ُEbrahee77m@gmail.com</p>
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@
                         </div>
                         <div>
                             <p class="font-semibold text-[#111618] dark:text-white">Phone Number</p>
-                            <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">+1 (555) 000-1234</p>
+                            <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">+967-777241186</p>
                             <p class="text-[#617c89] dark:text-[#a0aec0] text-sm">Mon - Fri, 9am - 6pm EST</p>
                         </div>
                     </div>

@@ -44,7 +44,7 @@
 
         @forelse($categories as $category)
             @php
-                $fallback = asset('images/category-placeholder.png');
+                $fallback = asset('images/hero.jpg');
             @endphp
 
             <a href="{{ route('user.categories.show', $category->id) }}"
