@@ -16,7 +16,7 @@
             ? (Str::startsWith($main->path, ['http://', 'https://'])
                 ? $main->path
                 : asset('storage/' . $main->path))
-            : 'https://via.placeholder.com/800x600?text=No+Image';
+            : asset('images/hero.jpg');
 
         $price = $product->sale_price ?? $product->price;
     @endphp
@@ -54,9 +54,12 @@
                         <div class="grid grid-cols-5 gap-3">
                             @foreach ($images->take(5) as $img)
                                 @php
-                                    $thumb = Str::startsWith($img->path, ['http://', 'https://'])
-                                        ? $img->path
-                                        : asset('storage/' . $img->path);
+                                    $thumb = $img->path
+                                        ? (Str::startsWith($img->path, ['http://', 'https://'])
+                                            ? $img->path
+                                            : asset('storage/' . $img->path))
+                                        : asset('images/hero.jpg');
+
                                 @endphp
                                 <a href="{{ $thumb }}" target="_blank"
                                     class="aspect-square rounded-lg border-2 {{ $img->is_main ? 'border-primary' : 'border-transparent hover:border-primary/50' }}

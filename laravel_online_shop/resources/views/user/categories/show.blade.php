@@ -72,7 +72,7 @@
                     {{-- صورة المنتج: عدّلها حسب مشروعك --}}
                     <img
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        src="{{ $product->image_url ?? asset('images/product-placeholder.png') }}"
+                        src="{{ $product->image_url ?? asset('images/hero.jpg') }}"
                         alt="{{ $product->name }}"
                     />
 

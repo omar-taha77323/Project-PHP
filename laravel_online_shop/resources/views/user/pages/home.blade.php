@@ -9,7 +9,7 @@
         <div class="py-6">
             <div class="@container">
                 <div class="flex min-h-[520px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-start justify-end px-6 pb-16 md:px-12 md:pb-20 relative overflow-hidden group"
-                    style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuARz6JC1LXJihF505lfvJzk7ZNuRNI7g_x-rnIrBchNUdDV-oiNU_2fI7QH1NswM_E2A4LdhlYC0fHhS4sK7VGNMzUaUR_ptZzu7D4ghmGWx-HVwk0FTqgCOpzoDpMuxWZlbJT0HZKyQpaFgzqJa_eghPZA_dKNSzr77gvfFwI71kIl07lXegU8gMD6TEEUi4pWOYQjjlDUFhPWblAyDAHA_-eiBk6sNxRLBw2d7SQqfl5rLV2ybgtx5yAZzTg0k-125Q4LGa7khdM");'>
+                    style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), url("{{ asset('images/hero.jpg') }}");'>
                     <div class="flex flex-col gap-4 text-left max-w-2xl z-10">
                         <h1 class="text-white text-5xl font-black leading-tight tracking-[-0.033em] md:text-6xl">
                             Discover Your Next Favorite Essential
@@ -43,7 +43,7 @@
                     <div class="relative aspect-square rounded-xl overflow-hidden mb-3 bg-gray-100 dark:bg-gray-800">
                         {{-- لو عندك صورة للتصنيف لاحقاً نحطها هنا --}}
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                            style='background-image: url("https://picsum.photos/seed/category-{{ $cat->id }}/600/600");'>
+                        style='background-image: url("{{ asset('images/hero.jpg') }}");'>
                         </div>
 
                         <div
@@ -72,7 +72,7 @@
                     class="flex flex-col group bg-white dark:bg-gray-900 rounded-xl p-3 border border-transparent hover:border-gray-200 dark:hover:border-gray-800 transition-all hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-none">
                     <a href="{{ route('user.products.show', $p->id) }}"
                         class="relative w-full aspect-square bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden"
-                        style='background-image: url("{{ $p->mainImage?->path ? asset($p->mainImage->path) : 'https://picsum.photos/seed/product-' . $p->id . '/800/800' }}");'>
+                            style='background-image: url("{{ $p->mainImage?->path ? asset($p->mainImage->path) : asset('images/hero.jpg') }}");'>
 
                         <div class="absolute top-2 right-2">
                             {{-- زر مفضلة (سنربطه بصفحة wishlist لاحقاً) --}}
@@ -121,33 +121,6 @@
             @empty
                 <div class="col-span-full text-gray-500 px-4">No products found.</div>
             @endforelse
-        </div>
-
-        {{-- Newsletter --}}
-        <div class="py-12 px-4 w-full">
-            <div
-                class="bg-primary/10 dark:bg-gray-900 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-primary/20">
-                <div class="max-w-md text-center md:text-left">
-                    <h3 class="text-2xl font-bold text-[#111618] dark:text-white mb-2">Join our Newsletter</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Get early access to new collections and exclusive discounts
-                        delivered straight to your inbox.</p>
-                </div>
-
-                <form method="POST" action="{{ route('user.newsletter.subscribe') }}" class="flex w-full max-w-sm gap-2">
-                    @csrf
-                    <input name="email" type="email"
-                        class="flex-1 rounded-lg border-gray-200 dark:border-gray-800 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary"
-                        placeholder="Enter your email" required />
-                    <button
-                        class="bg-primary text-white font-bold px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
-                        Subscribe
-                    </button>
-                </form>
-            </div>
-
-            @if (session('success'))
-                <div class="mt-4 px-4 text-sm text-green-700">{{ session('success') }}</div>
-            @endif
         </div>
 
     </div>

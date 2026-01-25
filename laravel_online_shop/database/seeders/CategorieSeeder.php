@@ -2,30 +2,40 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Categorie;
 
 class CategorieSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-   public function run(): void
-{
-    $categories = [
-        ['name' => 'الهواتف الذكية'],
-        ['name' => 'أجهزة اللابتوب'],
-        ['name' => 'الساعات الذكية'],
-        ['name' => 'السماعات والملحقات'],
-        ['name' => 'الألعاب والكونسول'],
-        ['name' => 'كاميرات ديجيتال'],
-        ['name' => 'شاشات ومنصات عرض'],
-        ['name' => 'أجهزة التابلت'],
-    ];
+    public function run(): void
+    {
+        $categories = [
+            'Smartphones',
+            'Laptops',
+            'Tablets',
+            'Smart Watches',
+            'Headphones',
+            'Bluetooth Speakers',
+            'Computer Accessories',
+            'Gaming Consoles',
+            'Gaming Accessories',
+            'Monitors',
+            'Keyboards & Mice',
+            'Cameras',
+            'Drones',
+            'Networking Devices',
+            'Storage Devices',
+            'Power Banks',
+            'Chargers & Cables',
+            'Smart Home Devices',
+            'TV & Home Entertainment',
+            'Wearable Technology',
+        ];
 
-    foreach ($categories as $cat) {
-        \App\Models\Categorie::create($cat); // حذفنا الـ slug لأنه غير موجود في جدولك
+        foreach ($categories as $name) {
+            Categorie::create([
+                'name' => $name,
+            ]);
+        }
     }
 }
-    }
-
