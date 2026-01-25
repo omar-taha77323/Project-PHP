@@ -11,20 +11,19 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Categorie::query()
-            ->withCount(['products' => function ($q) {
-                $q->where('is_active', 1);
-            }])
+            ->withCount('products')
             ->orderBy('name')
             ->take(8)
             ->get();
 
         $featuredProducts = Product::query()
             ->where('is_active', 1)
-            ->with(['brand', 'category', 'mainImage'])
+            ->with(['mainImage', 'brand'])
             ->latest()
-            ->take(12) // نخليها أكثر عشان الـ slider
+            ->take(4)
             ->get();
 
-        return view('user.home', compact('categories', 'featuredProducts'));
+        return view('user.pages.home', compact('categories', 'featuredProducts'));
     }
+
 }

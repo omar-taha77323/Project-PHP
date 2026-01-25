@@ -27,10 +27,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->decimal('discount', 10, 2)->default(0);
-            // $table->decimal('total', 10, 2)->default(0);    
+            // $table->decimal('total', 10, 2)->default(0);
             $table->decimal('sale_price', 10, 2)
-                ->nullable()
-                ->after('price');
+                ->nullable();
         });
     }
 
