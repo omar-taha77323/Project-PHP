@@ -1,30 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Categorie;
-use App\Models\Product;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-        $categories = Categorie::query()
-            ->withCount(['products' => function ($q) {
-                $q->where('is_active', 1);
-            }])
-            ->orderBy('name')
-            ->take(8)
-            ->get();
+        //  $user = $request->user();
+        // if (!$user || $user->role_id != 1) {
+        //     abort(403, 'ليس لديك صلاحية الدخول');
+        // }
 
-        $featuredProducts = Product::query()
-            ->where('is_active', 1)
-            ->with(['brand', 'category', 'mainImage'])
-            ->latest()
-            ->take(12) // نخليها أكثر عشان الـ slider
-            ->get();
-
-        return view('user.home', compact('categories', 'featuredProducts'));
+        // return $next($request);
+        return view('dsadmin.dashboard');
     }
 }

@@ -19,15 +19,5 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-
-    $this->call([
-        SuperAdminSeeder::class,
-        CategorieSeeder::class,
-        BrandSeeder::class,
-        ProductSeeder::class,
-    ]);
-
-}
     }
-
+}
